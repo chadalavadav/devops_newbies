@@ -1,0 +1,134 @@
+Linux basic commands::
+    
+1. whoami
+2.sudo -i -> Switch to most privilege user
+3.pwd -> print working directory
+4.ls
+5. ls -a-> hidden files which starts with .
+6.ls -l -> long list like permissions and timestamp
+7.cd /usr
+8.cd .. -> moving one directory above
+9. cd../.. --> 2 levels directory back
+10.cd ~ -> previous location
+11.mkdir dir1 dir2 dir3
+12.mkdir -p india/telangana/hyderbad -> nested dirctory -p is parent
+13.ls -R india -> This gives all the sub directory list (recursive list)
+
+imp -> 1.Absolute path - Always begin with / (root) --> mkdir /opt/edureka
+2. relative path - does't starts with root.--> mkdir edureka
+
+creating files 
+1. cat 
+2. touch
+3. vi/vim editor 
+
+cat::->concantination( using cat command we can't change the existing data)
+
+cat >file1.txt
+i am daisy mom
+cntrl + d -> denies next line and goes back 
+
+cat file1.txt -> view the data
+cat file1.txt -n -> giveswith numbers
+cat file1.txt file2.txt >file3.txtn -> joining two file or more in the same way(overwrite)
+cat file1.txt >> file2.txt( Appending the file1 data to file2)
+
+touch :: files with no data added
+To add data we use echo command
+
+14. cp  /root/employee.txt /opt -> copy
+15. copy command does it in backend  if you want to see in front end use -v
+cp -v /root/employee.txt /opt -> verbose mode
+ cp -r dir1  /opt -> To copy a directory we need -r -> recursive mode
+ mv file1.txt newfile.txt -> This is for cut and paste
+ rm file2.txt --> remove files
+ rmdir dir.txt --> to remove directories but not nested
+ rmdir -r  india --> The nested directory can be removed
+ date
+ cal
+ cal -3
+ Tail and head  to see some particular no of  lines
+ tail -20 kernel.log--> get last 20 lines from the log
+ df -hT -> 
+ du -sh -> directory usage 
+  graphical Editors 
+  
+  gedit
+  nedit
+  pico
+  
+  Text based esditors in linux
+  vi
+  vim
+  nano
+  
+  Shell Scripting:: Series of commands executing together
+
+Ex :: For automation we can write a small script to take a back up everyday at 6pm
+ Let create an example script 
+ vi script.sh
+ !#/bin/bash
+ mkdir project
+ cd project
+ cp /var/log/*.log .
+ 
+ save and come out of vi editor 
+ 
+ To run sh script.sh
+ To find whether scipt executed or not $?
+ If it returns zero then script got executed succesfully
+ 
+ grep 
+ 
+In linux if you want to see all the user related info 
+cat /etc/password
+grep -i edureka /etc/passwd
+sed -> stremmed editor
+ which means you can add in conditions to streamline the result in linux 
+ 
+ ex:: sed -n '5p' /boot/grub/grub.cfg
+ This gives only the 5th line printed
+  To substitute the word in the file 
+  
+  cat file.txt
+  word1.txt
+  word2.txt
+  word3.txt
+  
+  To cange the word to world we can use sed
+  sed -e 's/word/world' file.txt  ----> s in the command is meant for substitution
+  gives us output as 
+  world1.txt
+  world2.txt
+  world3.txt
+  
+  To delete all the empty lines from the file 
+  
+  sed -e  '/^$/d' file  -> d here stands for delete ^$ -> this is for empty lines
+
+awk command
+
+awk -F: '{print $1,$NF}'  /etc/passwrd  --> This prints the first and last feild
+
+alias command --> alias cls=clear
+so we can use cls to clear the screeen from now on
+
+Package managment in ubuntu 
+we use apt-get  -> This advanced command used to manage packages in ubuntu
+
+In centos we have a package manger called as YUM
+
+Important(improved version of telnet)  SSH->secure schell (using ssh we access remote desktops)
+If you don't want your remote machine to connect to others by ssh -> we can stop sshg --> systemctl stop sshd
+so even if you run ssh <ip>  it says the port has been blocked and can't be connected
+To start the sshd -->systemctl start sshd
+
+So everytime to login in to remote machine we need to provide password so get passwordless authentication we generate keys
+ssh-keygen
+We share only the public key but not the private key for others to connect to remote desktop
+So to copy the key :: ssh-copy-id root@<username of the machine you wants to copy key to>
+post the copy is completed you can ssh without any password
+
+netcat -> General cli tool to read/write/redirecting data accross the network
+network debugging
+netcat -l 8080 --> server will now listen on port 8080 for inbound connections
